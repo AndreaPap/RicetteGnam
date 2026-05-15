@@ -29,7 +29,7 @@ body {
     box-sizing: border-box;
     border: 3px solid #ccc;
     font-family: monospace;
-    font-size: 3cqmin;   
+    font-size: 2cqmin;   
 }
 
 .EvaluateStyle
@@ -41,7 +41,7 @@ body {
     place-items: center;
     box-sizing: border-box;
     font-family: monospace;
-    font-size: 3cqmin; 
+    font-size: 2cqmin; 
 }
 
 .ResetStyle
@@ -52,7 +52,7 @@ body {
     place-items: center;
     box-sizing: border-box;
     font-family: monospace;
-    font-size: 3cqmin; 
+    font-size: 2cqmin; 
 }
 
 .TitleStyle 
@@ -66,5 +66,5 @@ body {
     border: 3px solid #ccc;
     font-family: monospace;
     font-weight: bold;
-    font-size: 3cqmin;   
+    font-size: 2cqmin;   
 }
