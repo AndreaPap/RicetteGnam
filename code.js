@@ -31,17 +31,17 @@ class System
 
         Element = document.createElement( "span" );
         Element.className = "CellStyle";
-        Element.textContent = "Nome ingrediente";
+        Element.textContent = "Ingrediente";
         App.append( Element );
 
         Element = document.createElement( "span" );
         Element.className = "CellStyle";
-        Element.textContent = "Quantità originale";
+        Element.textContent = "Originale";
         App.append( Element );
 
         Element = document.createElement( "span" );
         Element.className = "CellStyle";
-        Element.textContent = "Quantità scalata";
+        Element.textContent = "Scalata";
         App.append( Element );
 
         for( let Cur = 0; Cur < N; Cur ++ )
