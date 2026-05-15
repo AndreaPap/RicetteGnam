@@ -18,7 +18,7 @@ class System
         let App = document.getElementById( "App" );
         App.className = "AppStyle";
 
-        App.style.setProperty( "--RowsN", N + 3 );
+        App.style.setProperty( "--RowsN", N + 4 );
         
         let Cell; 
         let Element; 
