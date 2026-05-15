@@ -30,17 +30,17 @@ class System
         App.append( Element );
 
         Element = document.createElement( "span" );
-        Element.className = "CellStyle";
+        Element.className = "HeaderStyle";
         Element.textContent = "Ingrediente";
         App.append( Element );
 
         Element = document.createElement( "span" );
-        Element.className = "CellStyle";
+        Element.className = "HeaderStyle";
         Element.textContent = "Originale";
         App.append( Element );
 
         Element = document.createElement( "span" );
-        Element.className = "CellStyle";
+        Element.className = "HeaderStyle";
         Element.textContent = "Scalata";
         App.append( Element );
 
