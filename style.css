@@ -12,25 +12,59 @@ body {
 .AppStyle
 {
     display: grid;
-    align-items: center;
-    justify-content: center;
-    grid-template-columns: 1fr 1fr 1fr;
+    place-items: center;
+    grid-template-columns: repeat( 3, calc( 100% / 3 ) );
+    grid-template-rows: repeat( var( --RowsN ), calc( 100% / var( --RowsN ) ) );    
     box-sizing: border-box;
     height: 75%;
     width: 75%;
 }
 
-.CellStyle
+.CellStyle 
 {
+    display: grid;
     width: 100%;
     height: 100%;
+    place-items: center;
     box-sizing: border-box;
-    border: 1px solid #ccc;
+    border: 3px solid #ccc;
+    font-family: monospace;
+    font-size: 2em;   
 }
 
-.CellStyle > * /* Contentuto delle celle */
+.EvaluateStyle
 {
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-column: span 2;
+    place-items: center;
+    box-sizing: border-box;
+    font-family: monospace;
+    font-size: 2em; 
+}
+
+.ResetStyle
+{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    box-sizing: border-box;
+    font-family: monospace;
+    font-size: 2em; 
+}
+
+.TitleStyle 
+{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-column: span 3;
+    place-items: center;
+    box-sizing: border-box;
+    border: 3px solid #ccc;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 2em;   
 }
