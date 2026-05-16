@@ -66,21 +66,21 @@ class System
         Element.id = "Reset";
         Element.className = "ButtonStyle";
         Element.textContent = "Reset";
-        Element.onclick = () => PageSystem.EventReset(); // se metto direttamente la funzione perde this
+        Element.onclick = () => this.EventReset(); // se metto direttamente la funzione perde this
         App.append( Element );
 
         Element = document.createElement( "button" );
         Element.id = "Reset";
         Element.className = "ButtonStyle";
         Element.textContent = "Modifica";
-        Element.onclick = () => PageSystem.EventEdit(); // se metto direttamente la funzione perde this
+        Element.onclick = () => this.EventEdit(); // se metto direttamente la funzione perde this
         App.append( Element );
 
         Element = document.createElement( "button" );
         Element.id = "Evaluate";
         Element.className = "ButtonStyle";
         Element.textContent = "Calcola";
-        Element.onclick = () => PageSystem.EventEvaluate(); // se metto direttamente la funzione perde this
+        Element.onclick = () => this.EventEvaluate(); // se metto direttamente la funzione perde this
         App.append( Element );
 
         // aggiorna lo stato interno
