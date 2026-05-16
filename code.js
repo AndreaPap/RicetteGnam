@@ -3,7 +3,6 @@ class System
     constructor()
     {
         this.State_N = 0;
-        this.State_RefIndex = -1;
     }
 
     EventClean()
@@ -117,15 +116,6 @@ class System
             return;
         }
 
-        document.getElementById( "Name" + CurRef ).style.backgroundColor = "palegreen";
-        document.getElementById( "Name" + CurRef ).style.color = "firebrick";
-
-        document.getElementById( "Orig" + CurRef ).style.backgroundColor = "palegreen";
-        document.getElementById( "Orig" + CurRef ).style.color = "firebrick";
-
-        document.getElementById( "Scale" + CurRef ).style.backgroundColor = "palegreen";
-        document.getElementById( "Scale" + CurRef ).style.color = "firebrick";
-
         let OriginalTmp;
         let CurEvaluate;
 
@@ -136,9 +126,30 @@ class System
             {
                 document.getElementById( "Scale" + CurEvaluate ).value = ( OriginalTmp * ScaledRef / OriginalRef ).toFixed( 1 ); 
             }
-        }
 
-        this.State_RefIndex = CurRef;
+            if( CurEvaluate == CurRef )
+            {
+                document.getElementById( "Name" + CurEvaluate ).style.backgroundColor = "palegreen";
+                document.getElementById( "Name" + CurEvaluate ).style.color = "firebrick";
+
+                document.getElementById( "Orig" + CurEvaluate ).style.backgroundColor = "palegreen";
+                document.getElementById( "Orig" + CurEvaluate ).style.color = "firebrick";
+
+                document.getElementById( "Scale" + CurEvaluate ).style.backgroundColor = "palegreen";
+                document.getElementById( "Scale" + CurEvaluate ).style.color = "firebrick";
+            }
+            else
+            {
+                document.getElementById( "Name" + CurEvaluate ).style.backgroundColor = "white";
+                document.getElementById( "Name" + CurEvaluate ).style.color = "black";
+
+                document.getElementById( "Orig" + CurEvaluate ).style.backgroundColor = "white";
+                document.getElementById( "Orig" + CurEvaluate ).style.color = "black";
+
+                document.getElementById( "Scale" + CurEvaluate ).style.backgroundColor = "white";
+                document.getElementById( "Scale" + CurEvaluate ).style.color = "black";
+            }
+        }
     }
 
     EventReset()
@@ -154,20 +165,16 @@ class System
         for( let Cur = 0; Cur < this.State_N; Cur ++ )
         {
             document.getElementById( "Scale" + Cur ).value = '';
-            if( Cur === this.State_RefIndex )
-            {
-                document.getElementById( "Name" + Cur ).style.backgroundColor = "white";
-                document.getElementById( "Name" + Cur ).style.color = "black"; 
 
-                document.getElementById( "Orig" + Cur ).style.backgroundColor = "white";
-                document.getElementById( "Orig" + Cur ).style.color = "black"; 
+            document.getElementById( "Name" + Cur ).style.backgroundColor = "white";
+            document.getElementById( "Name" + Cur ).style.color = "black"; 
 
-                document.getElementById( "Scale" + Cur ).style.backgroundColor = "white";
-                document.getElementById( "Scale" + Cur ).style.color = "black"; 
-            }
+            document.getElementById( "Orig" + Cur ).style.backgroundColor = "white";
+            document.getElementById( "Orig" + Cur ).style.color = "black"; 
+
+            document.getElementById( "Scale" + Cur ).style.backgroundColor = "white";
+            document.getElementById( "Scale" + Cur ).style.color = "black"; 
         }
-
-        this.State_RefIndex = -1;
     }
 }
 
