@@ -33,20 +33,7 @@ body {
     font-size: 3cqmin;   
 }
 
-.EvaluateStyle
-{
-    display: grid;
-    width: 100%;
-    height: 100%;
-    grid-column: span 2;
-    place-items: center;
-    box-sizing: border-box;
-    font-family: monospace;
-    font-weight: normal;
-    font-size: 3cqmin; 
-}
-
-.ResetStyle
+.ButtonStyle
 {
     display: grid;
     width: 100%;

@@ -3,6 +3,7 @@ class System
     constructor()
     {
         this.State_N = 0;
+        this.State_RefIndex = -1;
     }
 
     EventClean()
@@ -63,18 +64,26 @@ class System
         }
 
         Element = document.createElement( "button" );
-        Element.id = "Evaluate";
-        Element.className = "EvaluateStyle";
-        Element.textContent = "Calcola";
-        Element.onclick = () => PageSystem.EventEvaluate(); // se metto direttamente la funzione perde this
+        Element.id = "Reset";
+        Element.className = "ButtonStyle";
+        Element.textContent = "Reset";
+        Element.onclick = () => PageSystem.EventReset(); // se metto direttamente la funzione perde this
         App.append( Element );
 
         Element = document.createElement( "button" );
         Element.id = "Reset";
-        Element.className = "ResetStyle";
-        Element.textContent = "Reset";
-        Element.onclick = () => PageSystem.EventReset(); // se metto direttamente la funzione perde this
+        Element.className = "ButtonStyle";
+        Element.textContent = "Modifica";
+        Element.onclick = () => PageSystem.EventEdit(); // se metto direttamente la funzione perde this
         App.append( Element );
+
+        Element = document.createElement( "button" );
+        Element.id = "Evaluate";
+        Element.className = "ButtonStyle";
+        Element.textContent = "Calcola";
+        Element.onclick = () => PageSystem.EventEvaluate(); // se metto direttamente la funzione perde this
+        App.append( Element );
+
         // aggiorna lo stato interno
         this.State_N = N;
     }
@@ -83,12 +92,12 @@ class System
     {
         let OriginalRef;
         let ScaledRef;
-        let Cur;
+        let CurRef;
         let Found = false;
 
-        for( Cur = 0; Cur < this.State_N; Cur ++ )
+        for( CurRef = 0; CurRef < this.State_N; CurRef ++ )
         {
-            ScaledRef = parseFloat( document.getElementById( "Scale" + Cur ).value );
+            ScaledRef = parseFloat( document.getElementById( "Scale" + CurRef ).value );
             if( !isNaN( ScaledRef ) )
             { 
                 Found = true;
@@ -101,31 +110,35 @@ class System
             return;
         }
 
-        OriginalRef = parseFloat( document.getElementById( "Orig" + Cur ).value );
+        OriginalRef = parseFloat( document.getElementById( "Orig" + CurRef ).value );
         if( isNaN( OriginalRef ) )
         {
             alert( "Inserisci un valore valido nella ricetta originale in corrispondenza del vincolo scalato" );
             return;
         }
 
-        document.getElementById( "Name" + Cur ).style.backgroundColor = "palegreen";
-        document.getElementById( "Name" + Cur ).style.color = "firebrick";
+        document.getElementById( "Name" + CurRef ).style.backgroundColor = "palegreen";
+        document.getElementById( "Name" + CurRef ).style.color = "firebrick";
 
-        document.getElementById( "Orig" + Cur ).style.backgroundColor = "palegreen";
-        document.getElementById( "Orig" + Cur ).style.color = "firebrick";
+        document.getElementById( "Orig" + CurRef ).style.backgroundColor = "palegreen";
+        document.getElementById( "Orig" + CurRef ).style.color = "firebrick";
 
-        document.getElementById( "Scale" + Cur ).style.backgroundColor = "palegreen";
-        document.getElementById( "Scale" + Cur ).style.color = "firebrick";
+        document.getElementById( "Scale" + CurRef ).style.backgroundColor = "palegreen";
+        document.getElementById( "Scale" + CurRef ).style.color = "firebrick";
 
         let OriginalTmp;
-        for( Cur = 0; Cur < this.State_N; Cur ++ )
+        let CurEvaluate;
+
+        for( CurEvaluate = 0; CurEvaluate < this.State_N; CurEvaluate ++ )
         {
-            OriginalTmp = parseFloat( document.getElementById( "Orig" + Cur ).value );
+            OriginalTmp = parseFloat( document.getElementById( "Orig" + CurEvaluate ).value );
             if( !isNaN( OriginalTmp ) )
             {
-                document.getElementById( "Scale" + Cur ).value = ( OriginalTmp * ScaledRef / OriginalRef ).toFixed( 1 ); 
+                document.getElementById( "Scale" + CurEvaluate ).value = ( OriginalTmp * ScaledRef / OriginalRef ).toFixed( 1 ); 
             }
         }
+
+        this.State_RefIndex = CurRef;
     }
 
     EventReset()
@@ -134,6 +147,27 @@ class System
 
         this.EventClean();
         this.EventInit( BackupN );
+    }
+
+    EventEdit()
+    {
+        for( let Cur = 0; Cur < this.State_N; Cur ++ )
+        {
+            document.getElementById( "Scale" + Cur ).value = '';
+            if( Cur === this.State_RefIndex )
+            {
+                document.getElementById( "Name" + Cur ).style.backgroundColor = "white";
+                document.getElementById( "Name" + Cur ).style.color = "black"; 
+
+                document.getElementById( "Orig" + Cur ).style.backgroundColor = "white";
+                document.getElementById( "Orig" + Cur ).style.color = "black"; 
+
+                document.getElementById( "Scale" + Cur ).style.backgroundColor = "white";
+                document.getElementById( "Scale" + Cur ).style.color = "black"; 
+            }
+        }
+
+        this.State_RefIndex = -1;
     }
 }
 
