@@ -18,7 +18,7 @@ class System
         let App = document.getElementById( "App" );
         App.className = "AppStyle";
 
-        App.style.setProperty( "--RowsN", N + 4 );
+        App.style.setProperty( "--RowsN", N + 5 );
         
         let Cell; 
         let Element; 
@@ -36,12 +36,12 @@ class System
 
         Element = document.createElement( "span" );
         Element.className = "HeaderStyle";
-        Element.textContent = "Originale";
+        Element.textContent = "Originale [g]";
         App.append( Element );
 
         Element = document.createElement( "span" );
         Element.className = "HeaderStyle";
-        Element.textContent = "Scalata";
+        Element.textContent = "Scalata [g]";
         App.append( Element );
 
         for( let Cur = 0; Cur < N; Cur ++ )
@@ -61,6 +61,21 @@ class System
             Element.className = "CellStyle";
             App.append( Element );
         }
+
+        Element = document.createElement( "span" );
+        Element.className = "HeaderStyle";
+        Element.textContent = "Totale";
+        App.append( Element );
+
+        Element = document.createElement( "span" );
+        Element.id = "TotOriginal";
+        Element.className = "HeaderStyle";
+        App.append( Element );
+
+        Element = document.createElement( "span" );
+        Element.id = "TotScaled";
+        Element.className = "HeaderStyle";
+        App.append( Element );
 
         Element = document.createElement( "button" );
         Element.id = "Reset";
@@ -93,6 +108,8 @@ class System
         let ScaledRef;
         let CurRef;
         let Found = false;
+        let TotOriginal = 0;
+        let TotScaled = 0;
 
         for( CurRef = 0; CurRef < this.State_N; CurRef ++ )
         {
@@ -117,6 +134,7 @@ class System
         }
 
         let OriginalTmp;
+        let ScaledTmp;
         let CurEvaluate;
 
         for( CurEvaluate = 0; CurEvaluate < this.State_N; CurEvaluate ++ )
@@ -124,7 +142,10 @@ class System
             OriginalTmp = parseFloat( document.getElementById( "Orig" + CurEvaluate ).value );
             if( !isNaN( OriginalTmp ) )
             {
-                document.getElementById( "Scale" + CurEvaluate ).value = ( OriginalTmp * ScaledRef / OriginalRef ).toFixed( 1 ); 
+                ScaledTmp = ( OriginalTmp * ScaledRef / OriginalRef );
+                document.getElementById( "Scale" + CurEvaluate ).value = ScaledTmp.toFixed( 1 );
+                TotOriginal += OriginalTmp;
+                TotScaled += ScaledTmp;
             }
 
             if( CurEvaluate == CurRef )
@@ -150,6 +171,9 @@ class System
                 document.getElementById( "Scale" + CurEvaluate ).style.color = "black";
             }
         }
+
+        document.getElementById( "TotOriginal" ).textContent = TotOriginal.toFixed( 1 );
+        document.getElementById( "TotScaled" ).textContent = TotScaled.toFixed( 1 );
     }
 
     EventReset()
@@ -175,8 +199,10 @@ class System
             document.getElementById( "Scale" + Cur ).style.backgroundColor = "white";
             document.getElementById( "Scale" + Cur ).style.color = "black"; 
         }
+
+        document.getElementById( "TotScaled" ).textContent = "";
     }
 }
 
 let PageSystem = new System();
-PageSystem.EventInit( 15 );
+PageSystem.EventInit( 10 );
